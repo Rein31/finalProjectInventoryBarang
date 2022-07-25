@@ -1,0 +1,57 @@
+<div class="container">
+    
+    <form class="row g-3" action="/addTransaksi" method="post" enctype="application/x-www-form-urlencoded">
+        <div class="row mt-5">
+            <h2>Add New Transaksi</h2>
+            <div class="col-4">
+                <label for="inputDate" class="form-label">Tanggal</label>
+                    <input name="tanggal" type="date" class="form-control" id="startdateId" placeholder="" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <label for="inputStatus" class="form-label">Status</label>
+                <select class="form-select" aria-label="Default select example" id="inputKategori" name="status">
+                    <option selected>Open this select menu</option>
+                    <option value="in" class="text-success">IN</option>    
+                    <option value="out" class="text-danger">OUT</option>
+                  </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <label for="inputSupp" class="form-label">Nama Toko</label>
+                    <input name="namaToko" type="text" class="form-control" id="inputSupp" placeholder="">  
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <label for="inputUser" class="form-label">Nama Employee</label>
+                    <input name="namaEmp" type="text" class="form-control" id="inputUser" placeholder="">  
+            </div>
+        </div>
+        <div class="col-4 mt-3">
+            <input type='button' value='Add Barang' id='addButton' class="btn btn-primary"> 
+            <input type='button' value='Remove Barang' id='removeButton' class="btn btn-primary">
+        </div>
+        <div id='TextBoxesGroup'>
+            <div id="TextBoxDiv1">
+                <div class="row g-3">
+                    <div class="col-auto">
+                        <label  for="inputBarang1" class="form-label">Nama Barang #1 : </label>
+                        <input name="namaBarang" type='text' class="form-control barang" id='inputBarang1' name="namaBarang1"> 
+                        
+                    </div>
+                    <div class="col-auto">
+                        <label  for="inputBarang1" class="form-label">Stok #1 : </label>
+                        <input name="jumStok" type='number' class="form-control stok" id='inputStok1' name="namaStok1">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">Add Transaksi</button>
+        </div>
+      </form>
+      
+</div>

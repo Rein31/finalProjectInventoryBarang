@@ -1,0 +1,51 @@
+<div class="container">
+    
+    <form class="row g-3" action="/addBarang" method="post" enctype="multipart/form-data">
+        <div class="row mt-5">
+            <h2>Add New Product</h2>
+            <div class="col-4">
+                <label for="inputNamaBarang" class="form-label">Product Name</label>
+                    <input name="namaBarang" type="text" class="form-control" id="inputNamaBarang" placeholder="pepsodent,indomie,etc" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <label for="inputStok" class="form-label">Stock</label>
+                    <input name="stok" type="number" class="form-control" id="inputStok" placeholder="0" required>  
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <label for="inputHarga" class="form-label">Price</label>
+                    <input name="harga" type="number" class="form-control" id="inputHarga" placeholder="0000" required>  
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <label for="inputKategori" class="form-label">Category</label>
+                <select class="form-select" aria-label="Default select example" id="inputKategori" name="kategori">
+                    <option selected>Open this select menu</option>
+                    <option value="Makanan">Makanan</option>    
+                    <option value="Minuman">Minuman</option>
+                    <option value="Alat Mandi">Alat Mandi</option>
+                  </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <label for="Image" class="form-label">Product Preview</label>
+                <input class="form-control" type="file" id="formFile" onchange="preview()" name="image">
+                
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <img id="frame" src="" class="img-fluid mt-3" />
+                    <button onclick="clearImage()" class="btn btn-primary mt-3">Reset</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">Add Product</button>
+        </div>
+      </form>
+</div>

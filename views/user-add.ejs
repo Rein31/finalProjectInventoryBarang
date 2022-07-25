@@ -1,0 +1,47 @@
+<div class="container">
+    
+    <form class="row g-3" action="/addUser" method="post" enctype="application/x-www-form-urlencoded">
+        <div class="row mt-5">
+            <h2>Add New User</h2>
+            <div class="col-4">
+                <label for="inputUserName" class="form-label">Username</label>
+                    <input name="username" type="text" class="form-control" id="inputUserName" placeholder="example : JohnDoeTheGreat" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <label for="inputPassword" class="form-label">Password</label>
+                    <input name="password" type="text" class="form-control" id="inputPassword" placeholder="example : password123" required>  
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <label for="inputEmail" class="form-label">Email</label>
+                    <input name="email" type="text" class="form-control" id="inputEmail" placeholder="example : johndoe@gmail.com" required>  
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <label for="inputRole" class="form-label">Roll</label>
+                <select class="form-select" aria-label="Default select example" id="inputRole" name="role">
+                    <option selected>Select Role</option>
+                    <option value="admin">Admin</option>    
+                    <option value="user">User</option>
+                  </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <label for="inputStatus" class="form-label">Status</label>
+                <select class="form-select" aria-label="Default select example" id="inputStatus" name="status">
+                    <option selected>Select Status</option>
+                    <option value="open">Open</option>    
+                    <option value="closed">Closed</option>
+                  </select>
+            </div>
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+</div>

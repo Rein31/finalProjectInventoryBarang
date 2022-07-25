@@ -1,0 +1,44 @@
+<h1>Welcome to List Barang</h1>
+
+<a href="/addBarang-form" class="btn btn-primary mb-3">Add New Barang</a>
+
+<p><b>List Barang:</b></p>
+
+<div class="d-flex flex-row">
+    <div class="p-2">
+        <table class="table table-responsive table-hover">
+            <thead>
+                <tr>
+                    <th scope="col-2">No.</th>
+                    <th scope="col-3">Nama Barang</th>
+                    <th scope="col-3">Stok</th>
+                    <th scope="col-3">Harga</th>
+                    <th scope="col-3">Kategori</th>
+                    <th scope="col-3">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (listBarang.length === 0) { %>
+                    <p><i><b>Data is empty</b></i></p>
+                    <% }else { %>
+                        <% let count = 1 %>
+                        <% listBarang.forEach(e => { %>
+                            <tr>
+                                <input type="hidden" name="idBarang" value="<%= e.id_barang %>">
+                                <td scope="row"><%= count %> </th>
+                                <td scope="row"><%= e.nama %> </td>
+                                <td scope="row"><%= e.stok %> </td>
+                                <td scope="row"><%= e.harga %> </td>
+                                <td scope="row"><%= e.kategori %> </td>
+                                <td scope="row"><a href="/detailBarang/<%= e.id_barang %>/<%= e.nama %>"><button type="button"
+                                    class="btn btn-outline-primary">detail</button></a>
+                                </td>
+                            </tr>
+                            <% count++; %> 
+                        <% }) %>
+                        <% } %>
+            </tbody>
+        </table>
+    </div>
+
+</div>

@@ -1,0 +1,52 @@
+<h1>Welcome to List Supplier</h1>
+
+<a href="/addUser-form" class="btn btn-primary mb-3">Add New user</a>
+
+<p><b>List User:</b></p>
+
+<div class="d-flex flex-row">
+    <div class="p-2">
+        <table class="table table-responsive table-hover">
+            <thead>
+                <tr>
+                    <th scope="col-2">No.</th>
+                    <th scope="col-3">Nama</th>
+                    <th scope="col-3">Username</th>
+                    <th scope="col-3">Password</th>
+                    <th scope="col-3">Email</th>
+                    <th scope="col-3">Alamat</th>
+                    <th scope="col-3">Telp</th>
+                    <th scope="col-3">Role</th>
+                    <th scope="col-3">Status</th>
+                    <th scope="col-3">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (listUser.length === 0) { %>
+                    <p><i><b>Data is empty</b></i></p>
+                    <% }else { %>
+                        <% let count = 1 %>
+                        <% listUser.forEach(e => { %>
+                            <tr>
+                                <input type="hidden" name="idUser" value="<%= e.id_user %>">
+                                <td scope="row"><%= count %> </td>
+                                <td scope="row"><%= e.nama %> </td>
+                                <td scope="row"><%= e.username %> </td>
+                                <td scope="row"><%= e.password %> </td>
+                                <td scope="row"><%= e.email %> </td>
+                                <td scope="row"><%= e.alamat %> </td>
+                                <td scope="row"><%= e.telp %> </td>
+                                <td scope="row"><%= e.role %></td>
+                                <td scope="row"><%= e.status %> </td>
+                                <td scope="row"><a href="/detailUser/<%= e.id_user %>/<%= e.username %>"><button type="button"
+                                    class="btn btn-outline-primary">Detail</button></a>
+                                </td>
+                            </tr>
+                            <% count++; %> 
+                        <% }) %>
+                        <% } %>
+            </tbody>
+        </table>
+    </div>
+
+</div>

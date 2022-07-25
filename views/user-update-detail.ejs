@@ -1,0 +1,89 @@
+<div class="container">
+    
+    <form class="row g-3" action="/updateUserDetail" method="post" enctype="application/x-www-form-urlencoded">
+        <input type="hidden" name="idUser" value=<%= detUser.id_user %>>
+        <div class="row mt-5">
+            <h2>Update Detail User</h2>
+            <div class="col-4">
+                <label for="inputNama" class="form-label">Nama</label>
+                <% if (detUser !== null) { %>
+                    <input name="nama" type="text" class="form-control" id="inputNama" placeholder="exp : John Doe" value="<%= detUser.nama %>" required>
+                <% } else { %>
+                    <input name="nama" type="text" class="form-control" id="inputNama" placeholder="exp : John Doe" required>
+                <% } %> 
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <label for="inputUserName" class="form-label">Username</label>
+                <% if (detUser !== null) { %>
+                    <input name="username" type="text" class="form-control" id="inputUserName" placeholder="exp : John Doe"  value="<%= detUser.username %>" required> 
+                <% } else { %>
+                    <input name="username" type="text" class="form-control" id="inputUserName" placeholder="exp : John Doe" required> 
+                <% } %> 
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <label for="inputPassword" class="form-label">Password</label>
+                <% if (detUser !== null) { %>
+                    <input name="password" type="text" class="form-control" id="inputPassword" placeholder="exp : abacdef12345" value="<%= detUser.password %> " required>
+                <% } else { %>
+                    <input name="password" type="text" class="form-control" id="inputPassword" placeholder="exp : abacdef12345" required> 
+                <% } %> 
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <label for="inputEmail" class="form-label">Email</label>
+                <% if (detUser !== null) { %>
+                    <input name="email" type="text" class="form-control" id="inputEmail" placeholder="exp : johndoe@gmail.com"  value= "<%= detUser.email %>" required> 
+                <% } else { %>
+                    <input name="email" type="text" class="form-control" id="inputEmail" placeholder="exp : johndoe@gmail.com" required> 
+                <% } %> 
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <label for="inputAlamat" class="form-label">Alamat</label>
+                <% if (detUser !== null) { %>
+                    <input name="alamat" type="text" class="form-control" id="inputAlamat" placeholder="exp : Jl. Segar Blok x No.y"  value= "<%= detUser.alamat %>" required> 
+                <% } else { %>
+                    <input name="alamat" type="text" class="form-control" id="inputAlamat" placeholder="exp : Jl. Segar Blok x No.y" required> 
+                <% } %> 
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <label for="inputTelp" class="form-label">Telp</label>
+                <% if (detUser !== null) { %>
+                    <input name="telp" type="text" class="form-control" id="inputTelp" placeholder="exp : 082212345678" value="<%= detUser.telp %> " required>
+                <% } else { %>
+                    <input name="telp" type="text" class="form-control" id="inputTelp" placeholder="exp : 082212345678" required> 
+                <% } %> 
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <label for="inputStatus" class="form-label">Status</label>
+                <select class="form-select" aria-label="Default select example" id="inputStatus" name="status">
+                    <option>Select Status</option>
+                    <% if (detUser.status === "open") { %>
+                        <option value="open" selected>open</option>  
+                        <option value="closed">closed</option>
+                    <% } else if (detUser.status === "closed") { %>
+                        <option value="open">open</option>  
+                        <option value="closed" selected>closed</option>
+                    <% } else {%>
+                        <option value="open">Open</option>    
+                        <option value="closed">Closed</option>
+                    <% } %>
+                  </select>
+            </div>
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">Update</button>
+        </div>
+      </form>
+</div>

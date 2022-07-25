@@ -1,0 +1,55 @@
+<div class="mt-5 ms-5">
+    <div class="card border-secondary mb-3" style="max-width: 18rem;">
+      <div class="card-header">Detail Barang </div>
+      <div class="card-body text-secondary">
+        <img src="http://localhost:3000/images/<%= detBarang.image %>" alt="" style="max-width: 15rem;">
+        <h5 class="card-title">
+          <%= detBarang.nama %>
+        </h5>
+        <p class="card-text">
+          <%= detBarang.stok %>
+        </p>
+        <p class="card-text">
+          <%= detBarang.harga %>
+        </p>
+        <p class="card-text">
+            <%= detBarang.kategori %>
+        </p>
+  
+        <a href="/barang"><button type="button" class="btn btn-primary">Back</button></a>
+  
+        <form action="/updateBarangDetail-form" method="post" class="d-inline">
+          <input type="hidden" name="idBarang" value="<%= detBarang.id_barang %>">
+          <button type="submit" class="btn btn-success">update</button>
+        </form>
+  
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+          delete
+        </button>
+  
+        <!-- Modal -->
+        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <h5>Are you sure want to delete <%= detBarang.nama %> product?</h5>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <form action="/deleteBarang" method="post" class="d-inline">
+                    <input type="hidden" name="idBarang" value="<%= detBarang.id_barang %>">
+                  <button type="submit" class="btn btn-danger">delete</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

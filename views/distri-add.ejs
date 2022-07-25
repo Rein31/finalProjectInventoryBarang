@@ -1,0 +1,43 @@
+<div class="container">
+    
+    <form class="row g-3" action="/addDistri" method="post" enctype="application/x-www-form-urlencoded">
+        <div class="row mt-5">
+            <h2>Add New Distributor</h2>
+            <div class="col-4">
+                <label for="inputDistriName" class="form-label">Distributor Name</label>
+                    <input name="namaToko" type="text" class="form-control" id="inputDistriName" placeholder="example : PT. Multi Indo" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <label for="inputNama" class="form-label">Name</label>
+                    <input name="nama" type="text" class="form-control" id="inputNama" placeholder="John Doe" required>  
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <label for="inputTelp" class="form-label">Telp</label>
+                    <input name="telp" type="text" class="form-control" id="inputTelp" placeholder="082212345678" required>  
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <label for="inputAlamat" class="form-label">Alamat</label>
+                    <input name="alamat" type="text" class="form-control" id="inputAlamat" placeholder="Jl. segar blok x no.x" required>  
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <label for="inputStatus" class="form-label">Status</label>
+                <select class="form-select" aria-label="Default select example" id="inputStatus" name="status">
+                    <option selected>Select Status</option>
+                    <option value="open">Open</option>    
+                    <option value="closed">Closed</option>
+                  </select>
+            </div>
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">Add Distributor</button>
+        </div>
+      </form>
+</div>

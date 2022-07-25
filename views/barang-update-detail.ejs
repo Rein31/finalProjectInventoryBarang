@@ -1,0 +1,58 @@
+<div class="container">
+    
+    <form class="row g-3" action="/updateBarangDetail" method="post" enctype="application/x-www-form-urlencoded">
+        <input type="hidden" name="idBarang" value=<%= detBarang.id_barang %>>
+        <div class="row mt-5">
+            <h2>Update Detail Product</h2>
+            <div class="col-4">
+                <label for="inputNamaBarang" class="form-label">Product Name</label>
+                <% if (detBarang !== null) { %>
+                    <input name="namaBarang" type="text" class="form-control" id="inputNamaBarang" placeholder="pepsodent,indomie,etc" value="<%= detBarang.nama %> " required>
+                <% } else { %>
+                    <input name="namaBarang" type="text" class="form-control" id="inputNamaBarang" placeholder="pepsodent,indomie,etc" required>
+                <% } %> 
+                    
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <label for="inputHarga" class="form-label">Price</label>
+                <% if (detBarang !== null) { %>
+                    <input name="harga" type="number" class="form-control" id="inputHarga" placeholder="0000"  value=<%= detBarang.harga %> required> 
+                <% } else { %>
+                    <input name="harga" type="number" class="form-control" id="inputHarga" placeholder="0000" required> 
+                <% } %> 
+                     
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <label for="inputKategori" class="form-label">Category</label>
+                <select class="form-select" aria-label="Default select example" id="inputKategori" name="kategori">
+                    <option>Open this select menu</option>
+                    <% if (detBarang.kategori === "Makanan") { %>
+                        <option value="Makanan" selected>Makanan</option>  
+                        <option value="Minuman" >Minuman</option>
+                        <option value="Alat Mandi">Alat Mandi</option>
+                    <% } else if (detBarang.kategori === "Minuman") { %>
+                        <option value="Makanan" >Makanan</option>    
+                        <option value="Minuman" selected>Minuman</option>
+                        <option value="Alat Mandi">Alat Mandi</option>
+                    <% } else if (detBarang.kategori === "Alat Mandi") {%>
+                        <option value="Makanan" >Makanan</option>    
+                        <option value="Minuman" >Minuman</option>
+                        <option value="Alat Mandi" selected>Alat Mandi</option>
+                    <% } else {%>
+                        <option value="Makanan" >Makanan</option>    
+                        <option value="Minuman" >Minuman</option>
+                        <option value="Alat Mandi">Alat Mandi</option>
+                    <% } %>
+                    
+                  </select>
+            </div>
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">Update</button>
+        </div>
+      </form>
+</div>

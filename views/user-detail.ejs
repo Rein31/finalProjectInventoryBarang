@@ -1,0 +1,66 @@
+<div class="mt-5 ms-5">
+    <div class="card border-secondary mb-3" style="max-width: 18rem;">
+      <div class="card-header">Detail User </div>
+      <div class="card-body text-secondary">
+        <h5 class="card-title">
+          <%= detUser.username %>
+        </h5>
+        <p class="card-text">
+          <%= detUser.nama %>
+        </p>
+        <p class="card-text">
+          <%= detUser.email %>
+        </p>
+        <p class="card-text">
+            <%= detUser.alamat %>
+        </p>
+        <p class="card-text">
+          <%= detUser.telp %>
+        </p>
+        <p class="card-text">
+            <%= detUser.password %>
+        </p>
+        <p class="card-text">
+          <%= detUser.role %>
+      </p>
+        <p class="card-text">
+          <%= detUser.status %>
+        </p>
+  
+        <a href="/user"><button type="button" class="btn btn-primary">Back</button></a>
+  
+  
+        <form action="/updateUserDetail-form" method="post" class="d-inline">
+          <input type="hidden" name="idUser" value="<%= detUser.id_user %>">
+          <button type="submit" class="btn btn-success">update</button>
+        </form>
+  
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+          delete
+        </button>
+  
+        <!-- Modal -->
+        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <h5>Are you sure want to delete <%= detUser.username %> user?</h5>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <form action="/deleteUser" method="post" class="d-inline">
+                    <input type="hidden" name="idUser" value="<%= detUser.id_user %>">
+                  <button type="submit" class="btn btn-danger">delete</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
