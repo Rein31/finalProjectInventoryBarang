@@ -7,7 +7,8 @@ const listTrans = async () => {
         const allListTrans = await pool.query(`SELECT trans.id_transaksi, trans.tanggal, trans.status_transaksi,  supp.nama_toko as namaSupp, distri.nama_toko as namaDistri, u.nama
         FROM public.flow_transaksi trans LEFT JOIN supplier supp ON trans.id_supp = supp.id_supp 
         LEFT JOIN distributor distri ON trans.id_distri = distri.id_distri
-        LEFT JOIN public."user" u on trans.id_user = u.id_user;`)
+        LEFT JOIN public."user" u on trans.id_user = u.id_user
+        ORDER BY trans.id_transaksi DESC;`)
         // console.log(allListTrans);
         return allListTrans.rows;
     } catch (error) {

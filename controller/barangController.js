@@ -22,18 +22,23 @@ app.set('layout', 'layouts/main');
 // handle all list barang
 exports.listBarang = async function (req,res) {
     const allBarang = await barang.listBarang();
+    const listKategori = await barang.listKategori();
+    // console.log(req);
     res.render('barang-list', {
         title : 'List Barang',
         listBarang : allBarang,
+        listKat : listKategori,
         // layout : main,
     }) 
 }
 
 // handle add-barang view
 exports.addBarangView = async function(req,res) {
+    const listKategori = await barang.listKategori();
     res.render('barang-add', {
         title : 'Add Barang',
         err : '',
+        listKat : listKategori
     }) 
 }
 
@@ -42,7 +47,7 @@ exports.newBarang = async function (req,res) {
     let image
     const findImgName = req.files.find((e) => e.filename)
     if (!findImgName) {
-        image = 'default.png'
+        image = 'default-product.png'
     }else{
         image = req.files[0].filename
     }
@@ -51,6 +56,7 @@ exports.newBarang = async function (req,res) {
     const stok = req.body.stok;
     const harga = req.body.harga;
     const kategori = req.body.kategori;
+
     console.log(nama);
     console.log(stok);
     console.log(harga);
@@ -64,10 +70,13 @@ exports.newBarang = async function (req,res) {
 exports.detailBarang = async function(req,res) {
     const idBarang = req.params.idBarang;
     const detailBar = (await barang.detailBarangWithStok(idBarang))[0];
-    console.log(detailBar);
+    const detailTransBarang = await barang.detailBarangTransaksi(idBarang);
+    // console.log(detailBar);
+    // console.log(detailTransBarang);
     res.render('barang-detail', {
         title : "Detail Barang",
         detBarang : detailBar,
+        detTransBar : detailTransBarang,
     })
 }
 
@@ -75,9 +84,12 @@ exports.detailBarang = async function(req,res) {
 exports.updateBarangView = async function (req,res) {
     const idBarang = req.body.idBarang;
     const detailBar = (await barang.detailBarangWithoutStok(idBarang))[0]
+    const listKategori = await barang.listKategori();
+    console.log(listKategori);
     res.render('barang-update-detail', {
         title : "Update Barang",
-        detBarang : detailBar,  
+        detBarang : detailBar, 
+        listKat : listKategori,
     })
 }
 
@@ -87,11 +99,19 @@ exports.updateBarangSend = async function (req,res) {
     const nama = req.body.namaBarang;
     const harga = req.body.harga;
     const kategori = req.body.kategori;
-    const imageBarang = req.body.imageBarang;
+    let image
+    const findImgName = req.files.find((e) => e.filename)
+    if (!findImgName) {
+        image = req.body.oldImage;
+    }else{
+        image = req.files[0].filename
+    }
+
     console.log(nama);
     console.log(harga);
     console.log(kategori);
-    await barang.updateBarang(idBarang,nama,harga,kategori)
+    console.log(image)
+    await barang.updateBarang(idBarang,nama,harga,kategori,image)
     res.redirect('/barang')
 }
 
@@ -104,14 +124,24 @@ exports.deleteBarang = async function (req,res) {
         res.status(404)
         res.send(`id product of ${idBarang} not found!`)
     }else{
-        fs.unlink('public/images/'+detBarang.image, (err => {
-            if (err) console.log(err);
-            else {
-              console.log("\nDeleted file: "+detBarang.image);
-            
-            }
-          }))
+        if (detBarang.image !== 'default-product.png') {
+            fs.unlink('public/images/'+detBarang.image, (err => {
+                if (err) console.log(err);
+                else {
+                  console.log("\nDeleted file: "+detBarang.image);
+                
+                }
+            }))
+        }
+        
         await barang.deleteBarang(idBarang)
         res.redirect('/barang')
     }
+}
+
+// handle add kategori
+exports.addKategori = async function (req,res) {
+    const newKategori = req.body.namaKategori
+    await barang.addNewKategori(newKategori);
+    res.redirect('/addBarang-form')
 }

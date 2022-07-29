@@ -3,49 +3,80 @@
     <form class="row g-3" action="/addBarang" method="post" enctype="multipart/form-data">
         <div class="row mt-5">
             <h2>Add New Product</h2>
-            <div class="col-4">
+            <div class="col-5">
                 <label for="inputNamaBarang" class="form-label">Product Name</label>
                     <input name="namaBarang" type="text" class="form-control" id="inputNamaBarang" placeholder="pepsodent,indomie,etc" required>
             </div>
         </div>
         <div class="row">
-            <div class="col-4">
+            <div class="col-5">
                 <label for="inputStok" class="form-label">Stock</label>
                     <input name="stok" type="number" class="form-control" id="inputStok" placeholder="0" required>  
             </div>
         </div>
         <div class="row">
-            <div class="col-4">
+            <div class="col-5">
                 <label for="inputHarga" class="form-label">Price</label>
                     <input name="harga" type="number" class="form-control" id="inputHarga" placeholder="0000" required>  
             </div>
         </div>
         <div class="row">
-            <div class="col-4">
+            <div class="col-3">
                 <label for="inputKategori" class="form-label">Category</label>
                 <select class="form-select" aria-label="Default select example" id="inputKategori" name="kategori">
                     <option selected>Open this select menu</option>
-                    <option value="Makanan">Makanan</option>    
-                    <option value="Minuman">Minuman</option>
-                    <option value="Alat Mandi">Alat Mandi</option>
+                    <% listKat.forEach(e => { %>
+                        <option value="<%= e.nama_kategori %>"><%= e.nama_kategori %></option>
+                    <% }) %>
                   </select>
+            </div>
+            <div class="col-3 mt-3">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-success mt-3" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
+                    Add Category
+                </button>
+    
+                <!-- Modal -->
+                
             </div>
         </div>
         <div class="row">
-            <div class="col-4">
+            <div class="col-5">
                 <label for="Image" class="form-label">Product Preview</label>
                 <input class="form-control" type="file" id="formFile" onchange="preview()" name="image">
                 
             </div>
             <div class="row">
-                <div class="col-4">
+                <div class="col-5">
                     <img id="frame" src="" class="img-fluid mt-3" />
-                    <button onclick="clearImage()" class="btn btn-primary mt-3">Reset</button>
+                    <button onclick="clearImage()" class="btn btn-primary mt-3" type="button">Reset</button>
                 </div>
             </div>
         </div>
-        <div class="col-12">
+        <div class="col-12 mt-5">
           <button type="submit" class="btn btn-primary">Add Product</button>
         </div>
-      </form>
+
+      </form action="/addKategori" method="POST">
+      <div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel"></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/addKategori" method="post" id="addCategory">
+                <label for="inputKategori" class="form-label">Category Name</label>
+                <input name="namaKategori" type="text" class="form-control" id="inputKategori" placeholder="">
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-success" >Add</button>
+        </form>
+
+            </div>
+        </div>
+        </div>
+    </div>
 </div>

@@ -38,7 +38,7 @@ exports.newDistri = async function (req,res) {
     const nama = req.body.nama;
     const telp = req.body.telp;
     const alamat = req.body.alamat;
-    const status = req.body.status;
+    const status = 'open'
     console.log(namaToko);
     console.log(nama);
     console.log(telp);
@@ -51,10 +51,12 @@ exports.newDistri = async function (req,res) {
 exports.detailDistri = async function(req,res) {
     const idDistri = req.params.idDistri;
     const detailDistri = (await distri.detailDistri(idDistri))[0];
+    const detailTransDistri = await distri.detailTransaksiDistri(idDistri)
     // console.log(detailDistri);
     res.render('Distri-detail', {
         title : "Detail distributor",
         detDistri : detailDistri,
+        detTransDistri : detailTransDistri
     })
 }
 

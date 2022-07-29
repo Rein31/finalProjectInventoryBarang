@@ -12,7 +12,6 @@
                     <th scope="col-2">No.</th>
                     <th scope="col-3">Nama</th>
                     <th scope="col-3">Username</th>
-                    <th scope="col-3">Password</th>
                     <th scope="col-3">Email</th>
                     <th scope="col-3">Alamat</th>
                     <th scope="col-3">Telp</th>
@@ -32,7 +31,6 @@
                                 <td scope="row"><%= count %> </td>
                                 <td scope="row"><%= e.nama %> </td>
                                 <td scope="row"><%= e.username %> </td>
-                                <td scope="row"><%= e.password %> </td>
                                 <td scope="row"><%= e.email %> </td>
                                 <td scope="row"><%= e.alamat %> </td>
                                 <td scope="row"><%= e.telp %> </td>
@@ -40,6 +38,38 @@
                                 <td scope="row"><%= e.status %> </td>
                                 <td scope="row"><a href="/detailUser/<%= e.id_user %>/<%= e.username %>"><button type="button"
                                     class="btn btn-outline-primary">Detail</button></a>
+
+                                    
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#resetPasswordModal<%= e.id_user %>">
+                                        Reset Password
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="resetPasswordModal<%= e.id_user %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <h5>Are you sure want to reset password <%= e.username %>?</h5>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                            <form action="/resetPassword" method="post" class="d-inline">
+                                                                <input type="hidden" name="idUser" value="<%= e.id_user %>">
+                                                                <button type="submit" class="btn btn-danger">Reset Password</button>
+                                                            </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                 </td>
                             </tr>
                             <% count++; %> 
@@ -48,5 +78,5 @@
             </tbody>
         </table>
     </div>
-
 </div>
+

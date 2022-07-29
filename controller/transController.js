@@ -6,8 +6,6 @@ var expressLayouts = require('express-ejs-layouts');
 const trans = require('../model/transModel')
 // call express library
 const app = express();
-// call dayjs library
-const dayjs = require('dayjs')
 // information using ejs
 app.set('view engine', 'ejs')
 // use express static for public folder
@@ -40,19 +38,30 @@ exports.newTrans = async function (req,res) {
     let tanggal = new Date(req.body.tanggal);
     const status = req.body.status;
     const namaToko = req.body.namaToko;
-    const namaEmp = req.body.namaEmp;
+    const namaEmp = req.user.nama;
     const namaBarang = req.body.namaBarang;
     const jumStok = req.body.jumStok;
     // console.log(status);
     // console.log(namaToko);
+    let newBarang = []
+    let newJumStok = []
     console.log(namaBarang);
+    if (Array.isArray(namaBarang)) {
+        namaBarang.forEach((e,i=0 ) => {
+            newBarang.push(e)
+            newJumStok.push(jumStok[i])
+        });
+    }else{
+        newBarang.push(namaBarang)
+        newJumStok.push(jumStok)
+    }
     console.log(jumStok);
     // namaBarang.forEach((e,i=0 )=> {
     //     console.log(`barang = ${e}, qty ${jumStok[i]}`);
     //     i++;
     // });
     console.log(tanggal.toLocaleDateString());
-    await trans.createTrans(tanggal,status,namaToko,namaEmp,namaBarang,jumStok)
+    await trans.createTrans(tanggal,status,namaToko,namaEmp,newBarang,newJumStok)
     res.redirect('/transaksi')
 }
 

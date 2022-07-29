@@ -38,19 +38,41 @@ const detailBarangWithoutStok = async (idBarang) => {
 // handle detail barang with stock
 const detailBarangWithStok = async (idBarang) => {
     try {
-        const detailBarangWithoutStock = await pool.query(`SELECT id_barang, nama, stok, harga, kategori, image
+        const detailBarangWithStock = await pool.query(`SELECT id_barang, nama, stok, harga, kategori, image
         FROM public.barang where id_barang = ${idBarang};`);
-        return detailBarangWithoutStock.rows;
+        return detailBarangWithStock.rows;
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+// handle detail barang tansaksi
+const detailBarangTransaksi = async (idBarang) => {
+    try {
+        const detailBarangTrans = await pool.query(`SELECT barang.nama as namaBarang,
+        flow.id_transaksi as idTransaksi,
+        flow.tanggal as tanggal,
+        detailTrans.status as status,
+        detailTrans.stok as stok,
+        distri.nama_toko as Distributor,
+        supp.nama_toko as Supplier,
+        u.nama as employee
+        FROM public.flow_transaksi flow LEFT JOIN public.detail_transaksi detailTrans ON flow.id_transaksi = detailTrans.id_transaksi
+        LEFT JOIN public."user" u ON flow.id_user = u.id_user LEFT JOIN public.barang ON detailTrans.id_barang = barang.id_barang
+        LEFT JOIN public.distributor distri ON flow.id_distri = distri.id_distri LEFT JOIN public.supplier supp ON flow.id_supp = supp.id_supp
+        WHERE barang.id_barang = ${idBarang}
+        ORDER BY tanggal DESC`);
+        return detailBarangTrans.rows;
     } catch (error) {
         console.log(error.message);
     }
 }
 
 // update detail barang
-const updateBarang = async (idBarang,namaBarang,harga,kategori) => {
+const updateBarang = async (idBarang,namaBarang,harga,kategori,image) => {
     try {
         const updateBar = await pool.query(`UPDATE public.barang
-        SET nama='${namaBarang}', harga='${harga}', kategori='${kategori}' image='${image}'
+        SET nama='${namaBarang}', harga='${harga}', kategori='${kategori}', image='${image}'
         WHERE id_barang = ${idBarang};`);
         return updateBar
     } catch (error) {
@@ -69,6 +91,28 @@ const deleteBarang = async (idBarang) => {
     }
 }
 
+const addNewKategori = async (newKategori) => {
+    try {
+        const addNewKategorii = await pool.query(`INSERT INTO public.kategori_barang(
+            nama_kategori)
+            VALUES ('${newKategori}');`);
+        return addNewKategorii
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+const listKategori = async () => {
+    try {
+        const listKategorii = await pool.query(`SELECT id_kategori, nama_kategori
+        FROM public.kategori_barang;`);
+        return listKategorii.rows;
+    } catch (error) {
+        console.log(error.message);
+    }
+    
+}
+
 module.exports = {
     listBarang,
     createBarang,
@@ -76,5 +120,8 @@ module.exports = {
     detailBarangWithStok,
     detailBarangWithoutStok,
     deleteBarang,
+    addNewKategori,
+    listKategori,
+    detailBarangTransaksi
     
 }

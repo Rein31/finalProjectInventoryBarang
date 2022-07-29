@@ -35,6 +35,28 @@ const detailSupp = async (idSupp) => {
     }
 }
 
+// handle detail transakski supplier
+const detailTransaksiSupp = async (idSupp) => {
+    try {
+        const detailTransSupp = await pool.query(`SELECT  supp.nama_toko as supplier, 
+        barang.nama as namaBarang,
+        flow.id_transaksi as idTransaksi,
+        flow.tanggal as tanggal,
+        detailTrans.status as status,
+        detailTrans.stok as stok,
+        u.nama as employee
+        FROM public.flow_transaksi flow LEFT JOIN public.detail_transaksi detailTrans ON flow.id_transaksi = detailTrans.id_transaksi
+        LEFT JOIN public."user" u ON flow.id_user = u.id_user LEFT JOIN public.barang ON detailTrans.id_barang = barang.id_barang
+        LEFT JOIN public.supplier supp ON flow.id_supp = supp.id_supp
+        WHERE supp.id_supp = ${idSupp}
+        ORDER BY tanggal DESC`)
+        return detailTransSupp.rows;
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+
 // update detail supp
 const updateSupp = async (idSupp,nama,namaToko,telp,alamat,status) => {
     try {
@@ -63,5 +85,6 @@ module.exports = {
     createSupp,
     detailSupp,
     updateSupp,
-    deleteSupp
+    deleteSupp,
+    detailTransaksiSupp
 }

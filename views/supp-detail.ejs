@@ -3,19 +3,19 @@
       <div class="card-header">Detail Supplier </div>
       <div class="card-body text-secondary">
         <h5 class="card-title">
-          <%= detSupp.nama_toko %>
+          Nama Toko : <%= detSupp.nama_toko %>
         </h5>
         <p class="card-text">
-          <%= detSupp.nama %>
+          Nama Contact Person : <%= detSupp.nama %>
         </p>
         <p class="card-text">
-          <%= detSupp.telp %>
+          Telp : <%= detSupp.telp %>
         </p>
         <p class="card-text">
-            <%= detSupp.alamat %>
+           Alamat : <%= detSupp.alamat %>
         </p>
         <p class="card-text">
-          <%= detSupp.status %>
+          Status : <%= detSupp.status %>
       </p>
   
         <a href="/supplier"><button type="button" class="btn btn-primary">Back</button></a>
@@ -55,3 +55,48 @@
       </div>
     </div>
   </div>
+
+  <div class="d-flex flex-row">
+    <div class="p-2">
+        <table class="table table-responsive table-hover">
+            <thead>
+                <tr>
+                    <th scope="col-2">No.</th>
+                    <th scope="col-3">Tanggal</th>
+                    <th scope="col-3">Nama Toko</th>
+                    <th scope="col-3">Barang</th>
+                    <th scope="col-3">Stok</th>
+                    <th scope="col-3">Status</th>
+                    <th scope="col-3">Employee</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (detTransSupp.length === 0) { %>
+                    <p><i><b>Data is empty</b></i></p>
+                    <% }else { %>
+                        <% let count = 1 %>
+                        <% detTransSupp.forEach(e => { %>
+                            <tr>
+                                <td scope="row"><%= count %> </th>
+                                <td scope="row"><%= e.tanggal.getDate() %>-<%= e.tanggal.getMonth() %>-<%= e.tanggal.getFullYear() %> </td>
+                                <td scope="row"><%= e.supplier %> </td>
+                                <td scope="row"><%= e.namabarang %> </td>
+                                <td scope="row"><%= e.stok %> </td>
+                                <% if (e.status === 'in') { %>
+                                  <td scope="row" class="text-success"><b>IN</b></td>
+                                <% } else if (e.status === 'out') {%>
+                                  <td scope="row" class="text-danger"><b>OUT</b></td>
+                                <% } else { %>
+                                  <td scope="row"><b>-</b></td>
+                                <% } %> 
+                                <td scope="row"><%= e.employee %> </td>
+                            </tr>
+                            <% count++; %> 
+                        <% }) %>
+                        <% } %>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+  

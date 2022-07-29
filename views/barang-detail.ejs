@@ -2,18 +2,18 @@
     <div class="card border-secondary mb-3" style="max-width: 18rem;">
       <div class="card-header">Detail Barang </div>
       <div class="card-body text-secondary">
-        <img src="http://localhost:3000/images/<%= detBarang.image %>" alt="" style="max-width: 15rem;">
+        <img src="/images/<%= detBarang.image %>" alt="" style="max-width: 15rem;">
         <h5 class="card-title">
-          <%= detBarang.nama %>
+          Nama Barang : <%= detBarang.nama %>
         </h5>
         <p class="card-text">
-          <%= detBarang.stok %>
+          Stok : <%= detBarang.stok %>
         </p>
         <p class="card-text">
-          <%= detBarang.harga %>
+          Harga : <%= new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(detBarang.harga) %>
         </p>
         <p class="card-text">
-            <%= detBarang.kategori %>
+          Kategori : <%= detBarang.kategori %>
         </p>
   
         <a href="/barang"><button type="button" class="btn btn-primary">Back</button></a>
@@ -52,4 +52,58 @@
       </div>
     </div>
   </div>
+
+  <div class="d-flex flex-row">
+    <div class="p-2">
+        <table class="table table-responsive table-hover">
+            <thead>
+                <tr>
+                    <th scope="col-2">No.</th>
+                    <th scope="col-3">Tanggal</th>
+                    <th scope="col-3">Nama Barang</th>
+                    <th scope="col-3">Stok</th>
+                    <th scope="col-3">Status</th>
+                    <th scope="col-3">Suppliser</th>
+                    <th scope="col-3">Distributor</th>
+                    <th scope="col-3">Employee</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (detTransBar.length === 0) { %>
+                    <p><i><b>Data is empty</b></i></p>
+                    <% }else { %>
+                        <% let count = 1 %>
+                        <% detTransBar.forEach(e => { %>
+                            <tr>
+                                <td scope="row"><%= count %> </th>
+                                <td scope="row"><%= e.tanggal.getDate() %>-<%= e.tanggal.getMonth() %>-<%= e.tanggal.getFullYear() %> </td>
+                                <td scope="row"><%= e.namabarang %> </td>
+                                <td scope="row"><%= e.stok %> </td>
+                                <% if (e.status === 'in') { %>
+                                  <td scope="row" class="text-success"><b>IN</b></td>
+                                <% } else if (e.status === 'out') {%>
+                                  <td scope="row" class="text-danger"><b>OUT</b></td>
+                                <% } else { %>
+                                  <td scope="row" ><b>-</b></td>
+                                <% } %> 
+                                <% if (e.supplier !== null) { %>
+                                  <td scope="row"><%= e.supplier %> </td>
+                                <% }else { %>
+                                  <td scope="row">-</td>
+                                <% } %> 
+                                <% if (e.distributor !== null) { %>
+                                  <td scope="row"><%= e.distributor %> </td>
+                                <% }else { %>
+                                  <td scope="row">-</td>
+                                <% } %> 
+                                <td scope="row"><%= e.employee %> </td>
+                            </tr>
+                            <% count++; %> 
+                        <% }) %>
+                        <% } %>
+            </tbody>
+        </table>
+    </div>
+
+</div>
   

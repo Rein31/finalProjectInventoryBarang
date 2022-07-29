@@ -1,0 +1,82 @@
+<div class="container mt-3">
+  <h1>Edit Profile <%= detUser.username %> </h1>
+  <hr>
+  <form class="row g-3" action="/editProfile" method="post" enctype="multipart/form-data">
+    <div class="row">
+      <!-- left column -->
+      <div class="col-md-3">
+
+        <div class="text-center">
+          
+          <img id="frame" src="/images/<%= detUser.image %>" class="img-fluid mt-3 mb-3"/>
+          <input class="form-control" type="file" id="formFile" onchange="preview()" name="image">
+        </div>
+      </div>
+
+      <!-- edit form column -->
+      <div class="col-md-9 personal-info">
+        <div class="alert alert-info alert-dismissable">
+          <ul>
+            <% if (typeof errors != 'undefined') { %>
+             <% errors.forEach(e => { %>
+              <li><%= e.message %> </li>
+             <% }) %>
+            <% } %> 
+        </ul>
+        <h3>Personal info</h3>
+
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Nama:</label>
+          <div class="col-lg-8">
+            <input name="nama" type="text" class="form-control" id="inputNamaUser" placeholder="" value="<%= detUser.nama %> ">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Email:</label>
+          <div class="col-lg-8">
+            <input class="form-control" type="email" name="email" value="<%= detUser.email %>">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Alamat:</label>
+          <div class="col-lg-8">
+            <input class="form-control" type="text" name="alamat" value="<%= detUser.alamat %>">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Telp:</label>
+          <div class="col-lg-8">
+            <input class="form-control" type="number" name="telp" value="<%= detUser.telp %>">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label">Username:</label>
+          <div class="col-md-8">
+            <input class="form-control" type="text" name="username" value="<%= detUser.username %>">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label">Password:</label>
+          <div class="col-md-8">
+            <input class="form-control" type="password" name="password1" value="">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label">Confirm password:</label>
+          <div class="col-md-8">
+            <input class="form-control" type="password" name="password2" value="">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label"></label>
+          <div class="col-md-8">
+            <input type="submit" class="btn btn-primary" value="Save Changes">
+            <span></span>
+            <input type="reset" class="btn btn-default" value="Cancel">
+          </div>
+        </div>
+  </form>
+</div>
+</div>
+</div>
+<hr>

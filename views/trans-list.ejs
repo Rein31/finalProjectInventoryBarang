@@ -27,7 +27,7 @@
                             <tr>
                                 <input type="hidden" name="idTrans" value="<%= e.id_transaksi %>">
                                 <td scope="row"><%= count %> </th>
-                                <td scope="row"><%= e.tanggal.toDateString() %> </td>
+                                <td scope="row"><%= e.tanggal.getDate() %>-<%= e.tanggal.getMonth() %>-<%= e.tanggal.getFullYear() %> </td>
                                 <% if (e.status_transaksi === "in") { %>
                                     <td scope="row" class="text-success"><b>IN</b></td>
                                 <% }else if (e.status_transaksi === "out"){ %>

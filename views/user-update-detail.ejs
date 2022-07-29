@@ -26,16 +26,6 @@
         </div>
         <div class="row">
             <div class="col-4">
-                <label for="inputPassword" class="form-label">Password</label>
-                <% if (detUser !== null) { %>
-                    <input name="password" type="text" class="form-control" id="inputPassword" placeholder="exp : abacdef12345" value="<%= detUser.password %> " required>
-                <% } else { %>
-                    <input name="password" type="text" class="form-control" id="inputPassword" placeholder="exp : abacdef12345" required> 
-                <% } %> 
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-4">
                 <label for="inputEmail" class="form-label">Email</label>
                 <% if (detUser !== null) { %>
                     <input name="email" type="text" class="form-control" id="inputEmail" placeholder="exp : johndoe@gmail.com"  value= "<%= detUser.email %>" required> 

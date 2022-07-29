@@ -38,7 +38,7 @@ exports.newSupp = async function (req,res) {
     const nama = req.body.nama;
     const telp = req.body.telp;
     const alamat = req.body.alamat;
-    const status = req.body.status;
+    const status = 'open'
     console.log(namaToko);
     console.log(nama);
     console.log(telp);
@@ -51,10 +51,12 @@ exports.newSupp = async function (req,res) {
 exports.detailSupp = async function(req,res) {
     const idSupp = req.params.idSupp;
     const detailSup = (await supp.detailSupp(idSupp))[0];
+    const detailTransSupp = await supp.detailTransaksiSupp(idSupp);
     // console.log(detailSup);
     res.render('supp-detail', {
         title : "Detail Supplier",
         detSupp : detailSup,
+        detTransSupp : detailTransSupp
     })
 }
 

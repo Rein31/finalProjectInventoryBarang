@@ -1,6 +1,6 @@
 <div class="container">
     
-    <form class="row g-3" action="/updateBarangDetail" method="post" enctype="application/x-www-form-urlencoded">
+    <form class="row g-3" action="/updateBarangDetail" method="post" enctype="multipart/form-data">
         <input type="hidden" name="idBarang" value=<%= detBarang.id_barang %>>
         <div class="row mt-5">
             <h2>Update Detail Product</h2>
@@ -30,29 +30,32 @@
                 <label for="inputKategori" class="form-label">Category</label>
                 <select class="form-select" aria-label="Default select example" id="inputKategori" name="kategori">
                     <option>Open this select menu</option>
-                    <% if (detBarang.kategori === "Makanan") { %>
-                        <option value="Makanan" selected>Makanan</option>  
-                        <option value="Minuman" >Minuman</option>
-                        <option value="Alat Mandi">Alat Mandi</option>
-                    <% } else if (detBarang.kategori === "Minuman") { %>
-                        <option value="Makanan" >Makanan</option>    
-                        <option value="Minuman" selected>Minuman</option>
-                        <option value="Alat Mandi">Alat Mandi</option>
-                    <% } else if (detBarang.kategori === "Alat Mandi") {%>
-                        <option value="Makanan" >Makanan</option>    
-                        <option value="Minuman" >Minuman</option>
-                        <option value="Alat Mandi" selected>Alat Mandi</option>
-                    <% } else {%>
-                        <option value="Makanan" >Makanan</option>    
-                        <option value="Minuman" >Minuman</option>
-                        <option value="Alat Mandi">Alat Mandi</option>
-                    <% } %>
-                    
+                    <% listKat.forEach(e => { %>
+                        <% if (detBarang.kategori === e.nama_kategori) { %>
+                            <option value="<%= detBarang.kategori %> " selected><%= detBarang.kategori %> </option>  
+                        <% }else { %>
+                            <option value="<%= e.nama_kategori %> "><%= e.nama_kategori %> </option>
+                        <% } %> 
+                    <% }) %> 
                   </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <label for="Image" class="form-label">Product Preview</label>
+                <input class="form-control" type="file" id="formFile" onchange="preview()" name="image">
+                
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <img id="frame" src="" class="img-fluid mt-3" />
+                    <button onclick="clearImage()" class="btn btn-primary mt-3" type="button">Reset</button>
+                </div>
             </div>
         </div>
         <div class="col-12">
           <button type="submit" class="btn btn-primary">Update</button>
+          <input type="hidden" name="oldImage" value="<%= detBarang.image %> ">
         </div>
       </form>
 </div>

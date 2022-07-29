@@ -1,0 +1,40 @@
+<h1>Welcome to Log</h1>
+
+
+<p><b>List Log:</b></p>
+
+<div class="d-flex flex-row">
+    <div class="p-2">
+        <table class="table table-responsive table-hover">
+            <thead>
+                <tr>
+                    <th scope="col-2">No.</th>
+                    <th scope="col-3">Method</th>
+                    <th scope="col-3">Url</th>
+                    <th scope="col-3">Username</th>
+                    <th scope="col-3">Role</th>
+                    <th scope="col-3">Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (listLog.length === 0) { %>
+                    <p><i><b>Data is empty</b></i></p>
+                    <% }else { %>
+                        <% let count = 1 %>
+                        <% listLog.forEach(e => { %>
+                            <tr>
+                                <td scope="row"><%= count %> </th>
+                                <td scope="row"><%= e.method %> </td>
+                                <td scope="row"><%= e.url %> </td>
+                                <td scope="row"><%= e.username %> </td>
+                                <td scope="row"><%= e.role %> </td>
+                                <td scope="row"><%= e.time.getFullYear()%>-<%= e.time.getMonth()%>-<%= e.time.getDate()%> , <%= e.time.getHours()%>:<%= e.time.getMinutes()%>:<%= e.time.getSeconds()%> </td>
+                            </tr>
+                            <% count++; %> 
+                        <% }) %>
+                        <% } %>
+            </tbody>
+        </table>
+    </div>
+
+</div>

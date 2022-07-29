@@ -26,9 +26,9 @@
                                 <td scope="row"><%= e.tanggal.toDateString() %> </td>
                                 <td scope="row"><%= e.nama_barang %> </td>
                                 <td scope="row"><%= e.stok %> </td>
-                                <% if (e.status_transaksi === "in") { %>
+                                <% if (e.status === "in") { %>
                                     <td scope="row" class="text-success"><b>IN</b></td>
-                                <% }else if (e.status_transaksi === "out"){ %>
+                                <% }else if (e.status === "out"){ %>
                                     <td scope="row" class="text-danger"><b>OUT</b> </td>
                                 <% }else { %>
                                     <td scope="row">-</td>
